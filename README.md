@@ -1,5 +1,5 @@
-# Advent of Code 2020
+# F# Advent of Code 2020
 
-https://adventofcode.com/2020
+My attempt at solving [_Advent of Code 2020_](https://adventofcode.com/2020) puzzles in F# without mutable state.
 
-To run the programs, do `dotnet run` in one of the numbered folders.
+To execute the programs, simply call `dotnet run` inside the numbered folders.
