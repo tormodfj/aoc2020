@@ -1,11 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <RootNamespace>_01</RootNamespace>
+    <RootNamespace>AoC</RootNamespace>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="Program.fs" />
     <None Include="input" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
+
 </Project>
