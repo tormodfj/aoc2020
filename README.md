@@ -1,4 +1,4 @@
-# F# Advent of Code 2020
+# Immutable Advent of Code 2020
 
 My attempt at solving [_Advent of Code 2020_](https://adventofcode.com/2020) puzzles in F# without mutable state.
 
