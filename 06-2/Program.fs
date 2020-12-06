@@ -9,7 +9,7 @@ let main argv =
 
     let count (group:string) =
         group.Split("\n")
-        |> Array.map (fun form -> set [for c in form -> c])
+        |> Array.map Set.ofSeq
         |> Set.intersectMany
         |> Set.count
     

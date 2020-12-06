@@ -8,7 +8,8 @@ let main argv =
     let groups = input.Split("\n\n")
 
     let count (group:string) =
-        set [for c in group.Replace("\n", "") -> c]
+        group.Replace("\n", "")
+        |> Set.ofSeq
         |> Set.count
     
     groups
