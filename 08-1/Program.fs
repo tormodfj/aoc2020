@@ -30,14 +30,16 @@ let main _ =
 
     let execute ops =
         let rec eval (ip:int) (acc:int) (visited:Set<int>) (ops:Op array) =
+            let evalAcc dAcc = eval (ip + 1)   (acc + dAcc) (visited.Add ip) ops
+            let evalJmp dIp  = eval (ip + dIp) (acc)        (visited.Add ip) ops
+            let evalNop ()   = eval (ip + 1)   (acc)        (visited.Add ip) ops
+
             match ops.[ip] with
             | _ when visited.Contains ip -> acc // Loop detected
-            | Acc value -> 
-                ops |> eval (ip + 1) (acc + value) (visited.Add ip)
-            | Jmp value -> 
-                ops |> eval (ip + value) (acc) (visited.Add ip)
-            | Nop -> 
-                ops |> eval (ip + 1) (acc) (visited.Add ip)
+            | Acc value -> evalAcc value
+            | Jmp value -> evalJmp value
+            | Nop -> evalNop ()
+
         ops 
         |> eval 0 0 (set[])
     
