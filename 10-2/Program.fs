@@ -10,16 +10,13 @@ let main _ =
 
     let outlet, device, adapters = 0, 3 + List.max input, input
     let nodes = List.sort (outlet::device::adapters)
-
-    let getCandidates i =
-        let isPredecessor x = x <= i
-        let isCandidate x = x <= i + 3
-
-        nodes
-        |> List.skipWhile isPredecessor
-        |> List.takeWhile isCandidate
-    
     let graph = 
+        let getCandidates i =
+            let isPredecessor x = x <= i
+            let isCandidate x = x <= i + 3
+            nodes
+            |> List.skipWhile isPredecessor
+            |> List.takeWhile isCandidate
         nodes 
         |> List.map (fun i -> (i, getCandidates i))
 
