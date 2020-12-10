@@ -8,10 +8,10 @@ let main _ =
         |> Array.map int
         |> List.ofArray
 
-    let outlet, device = 0, 3 + List.max input
+    let outlet, device, adapters = 0, 3 + List.max input, input
 
-    let result =
-        outlet::device::input
+    let joltDiffs =
+        outlet::device::adapters
         |> List.sort
         |> List.pairwise
         |> List.map (fun (x,y) -> y-x)
@@ -19,7 +19,7 @@ let main _ =
         |> List.map (fun (i,lst) -> (i, lst.Length))
         |> Map.ofList
 
-    result.[1] * result.[3]
+    joltDiffs.[1] * joltDiffs.[3]
     |> printfn "%i"
 
     0 // return an integer exit code
