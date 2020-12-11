@@ -1,6 +1,6 @@
 ﻿open System.IO
 
-type Tile = | Floor | EmptySeat | OccupiedSeat
+type Tile = | OpenFloor | EmptySeat | OccupiedSeat
 
 [<EntryPoint>]
 let main _ =
@@ -11,14 +11,14 @@ let main _ =
         line
         |> Array.ofSeq
         |> Array.map (fun tile ->
-            match tile with | '.' -> Floor | 'L' -> EmptySeat | '#' -> OccupiedSeat | _ -> failwith "Unrecognized tile")
+            match tile with | '.' -> OpenFloor | 'L' -> EmptySeat | '#' -> OccupiedSeat | _ -> failwith "Unrecognized tile")
 
     let initialFloor = input |> Array.map parseLine
 
     let getTile (floor:Tile array array) x y dx dy =
         match x+dx,y+dy with
-        | x,_ when x < 0 || x >= floor.[0].Length -> Floor
-        | _,y when y < 0 || y >= floor.Length -> Floor
+        | x,_ when x < 0 || x >= floor.[0].Length -> OpenFloor
+        | _,y when y < 0 || y >= floor.Length -> OpenFloor
         | x,y -> floor.[y].[x]
 
     let occupiedAdjacentSeats (floor:Tile array array) x y  =
