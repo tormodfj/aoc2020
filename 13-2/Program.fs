@@ -21,8 +21,12 @@ let main _ =
             | None -> None)
     
     let rec solve timestamp step constraints =
-        // Assuming bus IDs are primes, we can brute-force for two IDs at a time
-        // and easily re-calculate LCM (step) by multiplication (step*id)
+        
+        // Assuming bus IDs are primes, we can brute-force for one constraint at a 
+        // time. As long as we keep the step size equal to LCM of previous IDs, we
+        // keep those constraints satisfied. LCM for a set of primes is simply the 
+        // product, hence the (step*id)
+
         let isConstraintSatisfied (offset,id) =
             (timestamp + offset) % id = 0L
 
