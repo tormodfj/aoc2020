@@ -5,9 +5,9 @@ module Coordinate =
     let neighbours coord =
         let (Coordinate (x,y,z)) = coord
         [x-1..x+1] |> List.collect (fun x ->
-            [y-1..y+1] |> List.collect (fun y ->
-                [z-1..z+1] |> List.map (fun z -> 
-                    Coordinate (x,y,z))))
+        [y-1..y+1] |> List.collect (fun y ->
+        [z-1..z+1] |> List.map (fun z -> 
+            Coordinate (x,y,z))))
         |> List.except [coord]
 
 [<EntryPoint>]
@@ -32,25 +32,25 @@ let main _ =
         |> Set.ofArray
 
     let cycle times activeCubes =
-        let rec cycleImpl times (xMin,xMax) (yMin,yMax) (zMin,zMax) activeCubes =
+        let rec cycleImpl times xMin xMax yMin yMax zMin zMax activeCubes =
             if times = 0 then activeCubes else
             let isActive c = activeCubes |> Set.contains c
             let nextActiveCubes =
                 [xMin..xMax] |> List.collect (fun x ->
-                    [yMin..yMax] |> List.collect (fun y ->
-                        [zMin..zMax] |> List.choose (fun z ->
-                            let coord = Coordinate(x,y,z)
-                            let activeNeighbours =
-                                coord
-                                |> Coordinate.neighbours
-                                |> List.filter isActive
-                                |> List.length
-                            match isActive coord,activeNeighbours with
-                            | true,2 | true,3 | false,3 -> Some(coord)
-                            | _ -> None)))
-            cycleImpl (times-1) (xMin-1,xMax+1) (yMin-1, yMax+1) (zMin-1,zMax+1) (Set.ofList nextActiveCubes)
+                [yMin..yMax] |> List.collect (fun y ->
+                [zMin..zMax] |> List.choose (fun z ->
+                    let coord = Coordinate(x,y,z)
+                    let activeNeighbours =
+                        coord
+                        |> Coordinate.neighbours
+                        |> List.filter isActive
+                        |> List.length
+                    match isActive coord,activeNeighbours with
+                    | true,2 | true,3 | false,3 -> Some(coord)
+                    | _ -> None)))
+            cycleImpl (times-1) (xMin-1) (xMax+1) (yMin-1) (yMax+1) (zMin-1) (zMax+1) (Set.ofList nextActiveCubes)
 
-        cycleImpl times (xMin-1,xMax+1) (yMin-1,yMax+1) (zMin-1,zMax+1) activeCubes
+        cycleImpl times (xMin-1) (xMax+1) (yMin-1) (yMax+1) (zMin-1) (zMax+1) activeCubes
 
     initiallyActiveCubes
     |> cycle 6
