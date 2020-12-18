@@ -17,8 +17,8 @@ module Expr =
     let private parenParser = between (str "(") (str ")") exprParser
 
     opp.TermParser <- intParser <|> parenParser
-    opp.AddOperator(InfixOperator("+", ws, 1, Associativity.Left, (), (fun _ l r -> Add(l,r))))
-    opp.AddOperator(InfixOperator("*", ws, 1, Associativity.Left, (), (fun _ l r -> Mul(l,r))))
+    opp.AddOperator(InfixOperator("+", ws, 1, Associativity.Left, (fun l r -> Add(l,r))))
+    opp.AddOperator(InfixOperator("*", ws, 1, Associativity.Left, (fun l r -> Mul(l,r))))
 
     let private parser = exprParser .>> eof
 
