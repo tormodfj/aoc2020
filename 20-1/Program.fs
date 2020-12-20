@@ -52,7 +52,7 @@ let main _ =
             |> not)
         |> List.length
 
-    // Only the corner tiles have just 2 matching tiles
+    // The corner tiles are the only ones with just 2 matching tiles
     tiles
     |> List.filter (fun tile -> (countMatchingTiles tile) = 2)
     |> List.map (fun { ID = id } -> id)
