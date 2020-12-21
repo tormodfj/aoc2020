@@ -43,7 +43,6 @@ let main _ =
                 |> List.map (fun { Ingredients=ingredients } -> ingredients)
                 |> Set.intersectMany
             (allergen, candidateIngredients))
-        |> Seq.sortBy (fun (_,ingredients) -> Set.count ingredients)
 
     let allergenMap =
         let rec solve acc determined rest =
