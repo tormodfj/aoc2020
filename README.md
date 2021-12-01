@@ -1,5 +1,5 @@
-# Functional Advent of Code 2021
+# Immutable Advent of Code 2020
 
-Solving [_Advent of Code 2021_](https://adventofcode.com/2021) puzzles in F#.
+My attempt at solving [_Advent of Code 2020_](https://adventofcode.com/2020) puzzles in F# without mutable state.
 
 To execute the programs, simply call `dotnet run` inside the numbered folders.
